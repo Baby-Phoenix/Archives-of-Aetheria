@@ -76,7 +76,7 @@ Material:
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _BlendMode: 0
-    - _BottomLine: 0.288
+    - _BottomLine: 0.091
     - _ConservativeDepthOffsetEnable: 0
     - _CullMode: 2
     - _CullModeForward: 2
@@ -111,7 +111,7 @@ Material:
     - _StencilWriteMaskMV: 40
     - _SupportDecals: 1
     - _SurfaceType: 0
-    - _TopLine: 0.442
+    - _TopLine: 0.749
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
@@ -125,9 +125,9 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 3.4415908, g: 3.0271583, b: 0, a: 1}
-    - _BottomColor: {r: 18690376, g: 7518689.5, b: 0, a: 1}
+    - _BaseColor: {r: 1.9460304, g: 2.0811713, b: 0, a: 1}
+    - _BottomColor: {r: 571.01935, g: 165.62033, b: 0, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TopColor: {r: 227521.2, g: 197627.92, b: 179226.61, a: 1}
+    - _TopColor: {r: 9442.609, g: 166.63428, b: 0, a: 1}
   m_BuildTextureStacks: []
