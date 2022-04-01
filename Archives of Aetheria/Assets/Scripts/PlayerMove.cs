@@ -115,13 +115,13 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("isGrounded", false);
             isGrounded = false;
 
-            if ((isJumping && ySpeed < 0) || ySpeed < -2)
+            if ((isJumping && ySpeed < 0) || ySpeed < -3.5)
             {
                 animator.SetBool("isFalling", true);
                 characterController.height = 2.9f;
             }
         }
-
+        Debug.Log(ySpeed);
         if (moveDir != Vector3.zero)
         {
             animator.SetBool("isMoving", true);
@@ -155,7 +155,7 @@ public class PlayerMove : MonoBehaviour
         while(timer < dodgeTimer)
         {
             float speed = dodgeCurve.Evaluate(timer);
-            Vector3 dir = (transform.forward * speed) + (Vector3.up * velocity.y);
+            Vector3 dir = (transform.forward * speed) + (Vector3.up * velocity.y * 0.05f);
             characterController.Move(dir * dodgeSpeed * Time.deltaTime);
             timer += Time.deltaTime;
             yield return null;
