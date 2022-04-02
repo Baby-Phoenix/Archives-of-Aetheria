@@ -49,14 +49,14 @@ public class PlayerMove : MonoBehaviour
     {
         if(!isDodging && !isAttacking) PlayerMovement();
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isAttacking)
         {
             if (moveDir.magnitude != 0 && !isJumping)
             {
                 StartCoroutine(Dodge());
             }
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isJumping && !isDodging)
         {
             AttackCombo();
         }
@@ -140,7 +140,7 @@ public class PlayerMove : MonoBehaviour
         moveDir = new Vector3(horizontalInput, 0, verticalInput);
         float inputMagnitude = Mathf.Clamp01(moveDir.magnitude);
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             inputMagnitude /= 2;
         }
