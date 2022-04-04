@@ -48,7 +48,7 @@ Material:
     - _Second_Normal:
         m_Texture: {fileID: 2800000, guid: 11154d936b05e66498f68fa178c5cfbb, type: 3}
         m_Scale: {x: 0.05, y: 0.05}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 0, y: 0.1}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -73,16 +73,16 @@ Material:
     - _ConservativeDepthOffsetEnable: 0
     - _CullMode: 2
     - _CullModeForward: 2
-    - _Depth: 3.8
+    - _Depth: 1
     - _DepthOffsetEnable: 0
-    - _Displacement: 98.61
+    - _Displacement: 5
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 10
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
-    - _Normal_Strength: 0.39
+    - _Normal_Strength: 2
     - _OpaqueCullMode: 2
     - _QueueControl: 1
     - _QueueOffset: 0
@@ -92,7 +92,7 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 4
     - _RequireSplitLighting: 0
-    - _Smoothness: 1
+    - _Smoothness: 0
     - _SrcBlend: 1
     - _StencilRef: 0
     - _StencilRefDepth: 0
@@ -104,7 +104,7 @@ Material:
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 14
     - _StencilWriteMaskMV: 40
-    - _Strength: 0.4
+    - _Strength: 0.056
     - _SupportDecals: 1
     - _SurfaceType: 1
     - _TransparentBackfaceEnable: 0

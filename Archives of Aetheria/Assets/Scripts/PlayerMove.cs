@@ -196,7 +196,7 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("isGrounded", false);
             isGrounded = false;
 
-            if ((isJumping && ySpeed < 0) || ySpeed < -3.5)
+            if ((isJumping && ySpeed < 0) || ySpeed < -10.5)
             {
                 animator.SetBool("isFalling", true);
                 characterController.height = 2.9f;
