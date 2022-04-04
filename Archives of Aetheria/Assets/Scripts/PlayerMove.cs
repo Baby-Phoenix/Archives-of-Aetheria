@@ -60,6 +60,11 @@ public class PlayerMove : MonoBehaviour
         {
             AttackCombo();
         }
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            animator.SetTrigger("Slash Ability");
+        }
     }
 
     void AttackCombo()
