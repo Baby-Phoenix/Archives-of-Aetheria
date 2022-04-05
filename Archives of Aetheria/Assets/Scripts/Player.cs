@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float jumpHeight;
@@ -15,6 +15,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float dodgeSpeed = 1;
     private bool isDodging;
     private float dodgeTimer;
+    [SerializeField] private float dodgeRate = 1;
+    private float nextDodge;
         
 
     private Animator animator;
@@ -47,24 +49,39 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isDodging && !isAttacking) PlayerMovement();
+        if (!isDodging && !isAttacking) PlayerMovement();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isAttacking && Time.time > nextDodge)
         {
             if (moveDir.magnitude != 0 && !isJumping)
             {
+                nextDodge = Time.time + dodgeRate;
+
                 StartCoroutine(Dodge());
             }
         }
+
+        Attack();
+    }
+
+    private void Attack()
+    {
         if (Input.GetMouseButtonDown(0) && !isJumping && !isDodging)
         {
             AttackCombo();
         }
 
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !isDodging && !isJumping)
         {
+            isAttacking = true;
+
             animator.SetTrigger("Slash Ability");
         }
+    }
+    
+    private void AttackDone()
+    {
+        isAttacking = false;
     }
 
     void AttackCombo()
@@ -240,6 +257,7 @@ public class PlayerMove : MonoBehaviour
             characterController.Move(dir * dodgeSpeed * Time.deltaTime);
             timer += Time.deltaTime;
             yield return null;
+            
         }
         isDodging = false;
     }
@@ -255,6 +273,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    //Lock cursor from moving
     private void OnApplicationFocus(bool focus)
     {
         if (focus)
