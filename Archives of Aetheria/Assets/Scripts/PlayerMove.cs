@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float jumpHorizontalSpeed;
     [SerializeField] private float jumpTime;
     [SerializeField] private Transform camTransform;
+     public StatusBarManager healthBar;
 
     [SerializeField] AnimationCurve dodgeCurve;
     [SerializeField] private float dodgeSpeed = 1;
@@ -36,6 +37,10 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        healthBar = GameObject.Find("Canvas").GetComponentInChildren<StatusBarManager>();
+        healthBar.SetMaxHealth(10f);
+       
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
