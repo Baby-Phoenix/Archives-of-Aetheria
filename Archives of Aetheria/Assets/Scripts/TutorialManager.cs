@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-    public PlayerMove player;
+    public Player player;
     public LayerMask whatisTutorial;
     public GameObject[] popUps;
     public GameObject[] checkPoints;
