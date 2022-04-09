@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
 
         Keyframe dodgeLastFrame = dodgeCurve[dodgeCurve.length - 1];
         dodgeTimer = dodgeLastFrame.time;
+
+        FindObjectOfType<AudioManager>().Play("BGM");
     }
 
     // Update is called once per frame
