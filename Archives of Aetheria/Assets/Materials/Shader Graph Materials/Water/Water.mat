@@ -75,7 +75,7 @@ Material:
     - _CullModeForward: 2
     - _Depth: 1
     - _DepthOffsetEnable: 0
-    - _Displacement: 5
+    - _Displacement: 4
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
