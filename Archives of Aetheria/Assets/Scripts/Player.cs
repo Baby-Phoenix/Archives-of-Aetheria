@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     private float dodgeTimer;
     [SerializeField] private float dodgeRate = 1;
     private float nextDodge;
-        
 
     private Animator animator;
     private CharacterController characterController;
@@ -35,13 +34,11 @@ public class Player : MonoBehaviour
 
     int comboCount;
 
-
     // Start is called before the first frame update
     void Start()
     {
-        
-        healthBar = GameObject.Find("Canvas").GetComponentInChildren<StatusBarManager>();
-        healthBar.SetMaxHealth(10f);
+        //healthBar = GameObject.Find("Canvas").GetComponentInChildren<StatusBarManager>();
+        //healthBar.SetMaxHealth(10f);
        
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
@@ -49,8 +46,6 @@ public class Player : MonoBehaviour
 
         Keyframe dodgeLastFrame = dodgeCurve[dodgeCurve.length - 1];
         dodgeTimer = dodgeLastFrame.time;
-
-        FindObjectOfType<AudioManager>().Play("BGM");
     }
 
     // Update is called once per frame

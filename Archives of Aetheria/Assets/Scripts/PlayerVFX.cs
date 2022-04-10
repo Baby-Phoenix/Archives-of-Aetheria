@@ -99,8 +99,6 @@ public class PlayerVFX : MonoBehaviour
         obj.transform.localRotation = Quaternion.Lerp(obj.transform.rotation, rotation, 1);
     }
 
-
-
     private void ResetVFX()
     {
         meleeVFX_1.SetActive(false);
