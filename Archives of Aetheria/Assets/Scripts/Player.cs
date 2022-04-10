@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     private float dodgeTimer;
     [SerializeField] private float dodgeRate = 1;
     private float nextDodge;
-        
 
     private Animator animator;
     private CharacterController characterController;
@@ -35,13 +34,11 @@ public class Player : MonoBehaviour
 
     int comboCount;
 
-
     // Start is called before the first frame update
     void Start()
     {
-        
-        healthBar = GameObject.Find("Canvas").GetComponentInChildren<StatusBarManager>();
-        healthBar.SetMaxHealth(10f);
+        //healthBar = GameObject.Find("Canvas").GetComponentInChildren<StatusBarManager>();
+        //healthBar.SetMaxHealth(10f);
        
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
@@ -76,11 +73,18 @@ public class Player : MonoBehaviour
             AttackCombo();
         }
 
-        if (Input.GetMouseButtonDown(1) && !isDodging && !isJumping)
+        if (Input.GetMouseButtonDown(1) && !isJumping && !isDodging && !isAttacking)
         {
             isAttacking = true;
 
             animator.SetTrigger("Slash Ability");
+        }
+
+        if (Input.GetMouseButtonDown(2) && !isJumping && !isDodging && !isAttacking)
+        {
+            isAttacking = true;
+
+            animator.SetTrigger("Special Ability");
         }
     }
     
