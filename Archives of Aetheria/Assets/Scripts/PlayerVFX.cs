@@ -17,7 +17,7 @@ public class PlayerVFX : MonoBehaviour
     [SerializeField] GameObject slashVFX_3;
 
     //Special Ability
-    [SerializeField] GameObject specialVFX;
+    public GameObject specialVFX;
     [SerializeField] Transform firePoint;
     private GroundSlashAbility groundSlashScript;
 
@@ -81,6 +81,7 @@ public class PlayerVFX : MonoBehaviour
         var projectileObj = Instantiate(specialVFX, firePoint.position, Quaternion.identity) as GameObject;
 
         groundSlashScript = projectileObj.GetComponent<GroundSlashAbility>();
+        groundSlashScript.SetFirepoint(firePoint);
         RotateToDestination(projectileObj, true);
         projectileObj.GetComponent<Rigidbody>().velocity = transform.forward * groundSlashScript.speed;
 
