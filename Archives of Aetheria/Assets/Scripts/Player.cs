@@ -71,11 +71,18 @@ public class Player : MonoBehaviour
             AttackCombo();
         }
 
-        if (Input.GetMouseButtonDown(1) && !isDodging && !isJumping)
+        if (Input.GetMouseButtonDown(1) && !isJumping && !isDodging && !isAttacking)
         {
             isAttacking = true;
 
             animator.SetTrigger("Slash Ability");
+        }
+
+        if (Input.GetMouseButtonDown(2) && !isJumping && !isDodging && !isAttacking)
+        {
+            isAttacking = true;
+
+            animator.SetTrigger("Special Ability");
         }
     }
     
