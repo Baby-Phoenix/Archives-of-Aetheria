@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpHorizontalSpeed;
     [SerializeField] private float jumpTime;
     [SerializeField] private Transform camTransform;
+     public StatusBarManager healthBar;
 
     [SerializeField] AnimationCurve dodgeCurve;
     [SerializeField] private float dodgeSpeed = 1;
@@ -38,12 +39,18 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        healthBar = GameObject.Find("Canvas").GetComponentInChildren<StatusBarManager>();
+        healthBar.SetMaxHealth(10f);
+       
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
 
         Keyframe dodgeLastFrame = dodgeCurve[dodgeCurve.length - 1];
         dodgeTimer = dodgeLastFrame.time;
+
+        FindObjectOfType<AudioManager>().Play("BGM");
     }
 
     // Update is called once per frame
@@ -71,11 +78,18 @@ public class Player : MonoBehaviour
             AttackCombo();
         }
 
-        if (Input.GetMouseButtonDown(1) && !isDodging && !isJumping)
+        if (Input.GetMouseButtonDown(1) && !isJumping && !isDodging && !isAttacking)
         {
             isAttacking = true;
 
             animator.SetTrigger("Slash Ability");
+        }
+
+        if (Input.GetMouseButtonDown(2) && !isJumping && !isDodging && !isAttacking)
+        {
+            isAttacking = true;
+
+            animator.SetTrigger("Special Ability");
         }
     }
     

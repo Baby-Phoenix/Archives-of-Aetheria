@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerVFX : MonoBehaviour
 {
+    [SerializeField] Camera cam;
+
     //Melee
     [SerializeField] GameObject meleeVFX_1;
     [SerializeField] GameObject meleeVFX_2;
@@ -13,6 +15,12 @@ public class PlayerVFX : MonoBehaviour
     [SerializeField] GameObject slashVFX_1;
     [SerializeField] GameObject slashVFX_2;
     [SerializeField] GameObject slashVFX_3;
+
+    //Special Ability
+    [SerializeField] GameObject specialVFX;
+    [SerializeField] Transform firePoint;
+    private GroundSlashAbility groundSlashScript;
+
 
     private void Start()
     {
@@ -55,7 +63,43 @@ public class PlayerVFX : MonoBehaviour
         slashVFX_3.SetActive(true);
     }
 
-    
+    private void SpecialAbilityVFX()
+    {
+        ShootProjectile();
+    }
+
+    void ShootProjectile()
+    {
+        if (cam != null)
+        {
+            InstantiateProjectile();
+        }
+    }
+
+    void InstantiateProjectile()
+    {
+        var projectileObj = Instantiate(specialVFX, firePoint.position, Quaternion.identity) as GameObject;
+
+        groundSlashScript = projectileObj.GetComponent<GroundSlashAbility>();
+        RotateToDestination(projectileObj, true);
+        projectileObj.GetComponent<Rigidbody>().velocity = transform.forward * groundSlashScript.speed;
+
+    }
+
+    void RotateToDestination(GameObject obj, bool onlyY)
+    {
+        var rotation = Quaternion.LookRotation(this.transform.forward);
+
+        if (onlyY)
+        {
+            rotation.x = 0;
+            rotation.z = 0;
+        }
+
+        obj.transform.localRotation = Quaternion.Lerp(obj.transform.rotation, rotation, 1);
+    }
+
+
 
     private void ResetVFX()
     {
