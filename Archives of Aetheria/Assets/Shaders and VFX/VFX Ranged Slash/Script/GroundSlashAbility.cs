@@ -6,11 +6,13 @@ public class GroundSlashAbility : MonoBehaviour
 {
     public float speed = 30;
     public float slowDownRate = 0.01f;
-    public float detectingDistance = 0.1f;
+    public float detectingDistance = 1f;
     public float destroyDelay = 5;
 
     private Rigidbody rb;
     private bool stopped;
+
+    private Transform firePoint;
 
     void Start()
     {
@@ -27,6 +29,11 @@ public class GroundSlashAbility : MonoBehaviour
         Destroy(gameObject, destroyDelay);
     }
 
+    public void SetFirepoint(Transform _firepoint)
+    {
+        firePoint = _firepoint;
+    }
+
     private void FixedUpdate()
     {
         if (!stopped)
@@ -39,7 +46,7 @@ public class GroundSlashAbility : MonoBehaviour
             }
             else
             {
-                transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+                transform.position = new Vector3(transform.position.x, firePoint.position.y, transform.position.z);
             }
             Debug.DrawRay(distance, transform.TransformDirection(-Vector3.up * detectingDistance), Color.red);
         }

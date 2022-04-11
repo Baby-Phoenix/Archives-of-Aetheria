@@ -15,7 +15,7 @@ MonoBehaviour:
   version: 5
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -23,7 +23,8 @@ Material:
   m_Name: Sword_crystal
   m_Shader: {fileID: -6465566751694194690, guid: 85fd96f561ddd0f48bbda180ca7cd331,
     type: 3}
-  m_ShaderKeywords: 
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -48,8 +49,8 @@ Material:
     m_Ints: []
     m_Floats:
     - Vector1_41eab48a06584d94bc6eea708ff6514b: 0.633
-    - Vector1_50f66184c87e499f956fad51d2f016dd: 0.398
-    - Vector1_ab7d3954444e46c38b5cf06ca5384d3f: 0.343
+    - Vector1_50f66184c87e499f956fad51d2f016dd: 1
+    - Vector1_ab7d3954444e46c38b5cf06ca5384d3f: 0.997
     - Vector1_da3bc7dffbac44dba268c140fef71c05: 0.879
     - _QueueControl: 0
     - _QueueOffset: 0
