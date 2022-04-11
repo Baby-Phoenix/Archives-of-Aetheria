@@ -8,6 +8,7 @@ using UnityEngine.AI;
 public class EnemyAI_newTrial : MonoBehaviour
 {
     public NavMeshAgent agent;
+    public StatusBarManager healthBar;
 
     Animator anim;
 
@@ -19,13 +20,14 @@ public class EnemyAI_newTrial : MonoBehaviour
     public Vector3 walkpoint;
     public bool walkpointSet;
     public float walkPointRange;
-    public HealthBar playerHealthSlider;
+    
 
     public float health;
 
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    public Transform hand;
 
     //States
     public float sightRange, attackRange;
@@ -34,12 +36,19 @@ public class EnemyAI_newTrial : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerHealthSlider = GameObject.Find("HealthBar").GetComponent<HealthBar>();
+        healthBar = gameObject.GetComponentInChildren<StatusBarManager>();
+        healthBar.SetMaxHealth(10f);
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
         timeBetweenAttacks = .5f; //give it a 0.5sec delay between attacksa
         health = 5;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(hand.position, attackRange);
     }
 
     private void Update()
@@ -62,6 +71,8 @@ public class EnemyAI_newTrial : MonoBehaviour
         Vector3 distanceToWalkPoint = transform.position - walkpoint;
 
         if (distanceToWalkPoint.magnitude < 2.5f) walkpointSet = false;
+
+        anim.SetBool("Attack", true);
     }
 
     private void SearchWalkPoint()
@@ -74,7 +85,7 @@ public class EnemyAI_newTrial : MonoBehaviour
         if (Physics.Raycast(walkpoint, -transform.up, 2f, whatIsGround))
         {
             walkpointSet = true;
-            anim.SetBool("isRunning", true);
+            
         }
     }
 
@@ -82,42 +93,19 @@ public class EnemyAI_newTrial : MonoBehaviour
     {
         agent.SetDestination(player.position);
         transform.LookAt(player);
-        anim.SetBool("isRunning", true);
+        anim.SetBool("Attack", false);
     }
 
     private void AttackPlayer()
     {
         agent.SetDestination(transform.position);
-        anim.SetBool("isRunning", false);
-
-
 
         Vector3 distanceToWalkPoint = transform.position - player.position;
 
         if (!alreadyAttacked)
         {
-
-            //Melee attack if player is in range of 2
-
-            if (distanceToWalkPoint.magnitude < 5f)
-                anim.SetTrigger("meleeTrigger");
-
-            //the player is out of melee range
-            else if (distanceToWalkPoint.magnitude >= 5f)
-            {
-                int attackType = Random.Range(0, 2);
-
-                //the attack type is ranged shot
-                if (attackType == 0 && distanceToWalkPoint.magnitude > 10f)
-                    anim.SetTrigger("shootTrigger");
-
-                //the attack type is the jump attack
-                else if (attackType == 1 && distanceToWalkPoint.magnitude <= 10f)
-                    anim.SetTrigger("jumpAttackTrigger");
-
-            }
-
-            alreadyAttacked = true;
+            //attack code here
+            anim.SetBool("Attack", true);
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
@@ -126,6 +114,17 @@ public class EnemyAI_newTrial : MonoBehaviour
     {
         alreadyAttacked = false;
         transform.LookAt(player);
+    }
+
+    private void CheckHit()
+    {
+        Collider[] hitPlayer = Physics.OverlapSphere(hand.position, attackRange, whatIsPlayer);
+
+        foreach(Collider player in hitPlayer)
+        {
+            player.gameObject.GetComponent<Player>().healthBar.health--;
+            player.gameObject.GetComponent<Player>().healthBar.UpdateHealth();
+        }
     }
 
     
