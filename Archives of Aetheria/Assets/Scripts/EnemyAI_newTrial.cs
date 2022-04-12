@@ -37,7 +37,7 @@ public class EnemyAI_newTrial : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         healthBar = gameObject.GetComponentInChildren<StatusBarManager>();
-        healthBar.SetMaxHealth(10f);
+        healthBar.SetMaxValue(10f);
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
@@ -122,8 +122,8 @@ public class EnemyAI_newTrial : MonoBehaviour
 
         foreach(Collider player in hitPlayer)
         {
-            player.gameObject.GetComponent<Player>().healthBar.health--;
-            player.gameObject.GetComponent<Player>().healthBar.UpdateHealth();
+            player.gameObject.GetComponent<Player>().healthBar.unit--;
+            player.gameObject.GetComponent<Player>().healthBar.UpdateValue();
         }
     }
 

@@ -9,8 +9,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float gravityMultiplier;
     [SerializeField] private float jumpHorizontalSpeed;
     [SerializeField] private float jumpTime;
+    [SerializeField] private float rechargeTime;
     [SerializeField] private Transform camTransform;
-     public StatusBarManager healthBar;
+    public StatusBarManager healthBar;
+    public StatusBarManager staminaBar;
 
     [SerializeField] AnimationCurve dodgeCurve;
     [SerializeField] private float dodgeSpeed = 1;
@@ -37,8 +39,24 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthBar = GameObject.Find("Canvas").GetComponentInChildren<StatusBarManager>();
-        healthBar.SetMaxHealth(10f);
+        rechargeTime = 0;
+        StatusBarManager[] status = GameObject.Find("Player HUD").GetComponentsInChildren<StatusBarManager>();
+        
+        foreach(var i in status)
+        {
+            if (i.gameObject.tag == "HealthBar")
+            {
+                healthBar = i;
+                healthBar.SetMaxValue(10f);
+            }
+
+            else if (i.gameObject.tag == "StaminaBar")
+            {
+                staminaBar = i;
+                staminaBar.SetMaxValue(100f);
+            }
+        }
+      
        
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
@@ -61,8 +79,10 @@ public class Player : MonoBehaviour
 
                 StartCoroutine(Dodge());
             }
+            rechargeTime = 0;
         }
 
+        if (staminaBar.unit >= 5) 
         Attack();
     }
 
@@ -72,19 +92,23 @@ public class Player : MonoBehaviour
         {
             AttackCombo();
         }
-
-        if (Input.GetMouseButtonDown(1) && !isJumping && !isDodging && !isAttacking)
+        if (staminaBar.unit >= 10)
         {
-            isAttacking = true;
+            if (Input.GetMouseButtonDown(1) && !isJumping && !isDodging && !isAttacking)
+            {
+                isAttacking = true;
 
-            animator.SetTrigger("Slash Ability");
-        }
+                animator.SetTrigger("Slash Ability");
+            }
+            if (staminaBar.unit >= 15)
+            {
+                if (Input.GetMouseButtonDown(2) && !isJumping && !isDodging && !isAttacking)
+                {
+                    isAttacking = true;
 
-        if (Input.GetMouseButtonDown(2) && !isJumping && !isDodging && !isAttacking)
-        {
-            isAttacking = true;
-
-            animator.SetTrigger("Special Ability");
+                    animator.SetTrigger("Special Ability");
+                }
+            }
         }
     }
     
@@ -167,6 +191,7 @@ public class Player : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+        rechargeTime += Time.deltaTime;
 
         moveDir = new Vector3(horizontalInput, 0, verticalInput);
         float inputMagnitude = Mathf.Clamp01(moveDir.magnitude);
@@ -250,6 +275,11 @@ public class Player : MonoBehaviour
             characterController.Move(velocity * Time.deltaTime);
         }
 
+        if (rechargeTime >= 1f)
+        {
+            rechargeTime = 0;
+            StaminaManager(1);
+        }
        
     }
 
@@ -303,5 +333,16 @@ public class Player : MonoBehaviour
     private void SetCharacterControllerPosY(float yPos)
     {
         characterController.center = new Vector3(characterController.center.x, yPos, characterController.center.z);
+    }
+
+    private void StaminaManager(float value)
+    {
+        float total = staminaBar.unit + value;
+
+        if (total <= staminaBar.maxUnit && total >= 0)
+        {
+            staminaBar.unit = total;
+            staminaBar.UpdateValue();
+        }
     }
 }

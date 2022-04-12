@@ -16,7 +16,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            player.healthBar.health--;
+            player.healthBar.unit--;
            // player.healthBar.UpdateHealth();
         }
 
