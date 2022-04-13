@@ -6253,6 +6253,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4992c851e0643fc4e89a4300a50c9a27, type: 2}
   - {fileID: 11400000, guid: a8922ed67b754bc49ae3d37971c7f70f, type: 2}
   currentAttack: {fileID: 0}
+  healthbar: {fileID: 0}
   detectionRadius: 20
   maximumDetectionAngle: 50
   minimumDetectionAngle: -50
@@ -6344,7 +6345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a140a434948b34e95a6caeab14b0b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialVFX: {fileID: 4100595844090085475, guid: d7164f670f9c5ab43b74e8b9efdcbe6b,
+  specialVFX: {fileID: 2109109792800623778, guid: bd6d730f7f6867e4ca9976ff420040dc,
     type: 3}
   firePoint: {fileID: 2434917226864069621}
 --- !u!1 &2434917227397360233
