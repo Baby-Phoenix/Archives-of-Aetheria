@@ -21,7 +21,7 @@ public class StartControls : MonoBehaviour
         ScreenShade = GameObject.Find("ScreenShade").GetComponent<Image>();
     }
 
-    public IEnumerator FadeScreenShade(bool fadeToBlack = true, int fadeSpeed = 5)
+    public IEnumerator FadeScreenShade(bool fadeToBlack = true, float fadeSpeed = 7.5f)
     {
         Color SSColor = ScreenShade.color;
         float fadeAmount;
@@ -38,6 +38,8 @@ public class StartControls : MonoBehaviour
                 ExitButton.GetComponent<Text>().color = SSColor;
                 yield return null;
             }
+
+            SceneManager.LoadScene("Shrine of Origin");
         }
         else
         {
@@ -57,7 +59,6 @@ public class StartControls : MonoBehaviour
     private void OnStartClick()
     {
         StartCoroutine(FadeScreenShade());
-        // SceneManager.LoadScene("");
     }
 
     private void OnExitClick()

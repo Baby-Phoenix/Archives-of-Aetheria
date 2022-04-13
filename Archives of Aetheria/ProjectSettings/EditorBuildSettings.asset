@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Menu/StartScreen.unity
+    guid: 28d23fcf8ff47b04a816e4dc8a4899a9
+  - enabled: 1
+    path: Assets/Scenes/Shrine of Origin/Shrine of Origin.unity
+    guid: 5374ba4cb46d8424799930a0128721ae
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c90571db409f8fb4fbaa8fdd79dcd548,
       type: 2}
