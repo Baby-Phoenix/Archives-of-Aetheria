@@ -29,9 +29,9 @@ public class GroundSlashAbility : MonoBehaviour
         Destroy(gameObject, destroyDelay);
     }
 
-    public void SetFirepoint(Transform _firepoint)
+    public void SetFirepoint(Transform fp)
     {
-        firePoint = _firepoint;
+        firePoint = fp;
     }
 
     private void FixedUpdate()
