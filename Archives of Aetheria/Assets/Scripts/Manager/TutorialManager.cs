@@ -16,8 +16,8 @@ public class TutorialManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            player.healthBar.health--;
-            player.healthBar.UpdateHealth();
+            player.healthBar.unit--;
+            player.healthBar.UpdateValue();
         }
 
         for (int i = 0; i < popUps.Length; i++)

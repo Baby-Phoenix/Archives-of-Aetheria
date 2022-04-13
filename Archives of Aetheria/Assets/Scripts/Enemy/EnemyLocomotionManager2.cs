@@ -103,8 +103,8 @@ public class EnemyLocomotionManager2 : MonoBehaviour
                 direction = transform.forward;
             }
 
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed / Time.deltaTime);
+            //Quaternion targetRotation = Quaternion.LookRotation(direction);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed / Time.deltaTime);
         }
         //Rotate with pathfinding (navmesh)
         else
