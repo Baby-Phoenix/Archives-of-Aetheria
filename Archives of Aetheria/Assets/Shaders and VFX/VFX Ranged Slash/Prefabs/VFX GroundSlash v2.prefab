@@ -6045,6 +6045,9 @@ MonoBehaviour:
   slowDownRate: 0.1
   detectingDistance: 3
   destroyDelay: 3
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!54 &6759408714429046007
 Rigidbody:
   m_ObjectHideFlags: 0

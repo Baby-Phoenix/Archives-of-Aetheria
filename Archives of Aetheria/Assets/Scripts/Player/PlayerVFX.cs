@@ -20,6 +20,9 @@ public class PlayerVFX : MonoBehaviour
     [SerializeField] GameObject specialVFX;
     [SerializeField] Transform firePoint;
     private GroundSlashAbility groundSlashScript;
+    [SerializeField] Transform swordHitPoint;
+    public float swordHitPointRadius;
+    public LayerMask detectionLayer;
 
 
     private void Start()
@@ -31,6 +34,16 @@ public class PlayerVFX : MonoBehaviour
         slashVFX_1.SetActive(false);
         slashVFX_2.SetActive(false);
         slashVFX_3.SetActive(false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(swordHitPoint.position, swordHitPointRadius);
+    }
+
+    public void Update()
+    {
+
     }
 
     private void MeleeSlashVFX_1()
@@ -114,4 +127,27 @@ public class PlayerVFX : MonoBehaviour
         slashVFX_3.SetActive(false);
     }
 
+
+    public void DamageEnemy(float damageAmount)
+    {
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, swordHitPointRadius, detectionLayer);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            CharacterStats characterStats = colliders[i].transform.GetComponent<CharacterStats>();
+
+            if (characterStats != null)
+            {
+                Vector3 targetDirection = characterStats.transform.position - transform.position;
+                float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
+
+                if (viewableAngle > -360 && viewableAngle < 360)
+                {
+                    EnemyManager2 enemy = colliders[i].gameObject.GetComponent<EnemyManager2>();
+                    enemy.healthbar.UpdateValue(damageAmount);
+                }
+            }
+        }
+    }
 }

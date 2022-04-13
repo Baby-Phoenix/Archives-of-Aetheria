@@ -135,18 +135,7 @@ public class EnemyLocomotionManager2 : MonoBehaviour
             {
                 
                 Player player = currentTarget.gameObject.GetComponent<Player>();
-                float total = player.healthBar.unit + damageAmount;
-
-                if (total <= player.healthBar.maxUnit && total >= 0)
-                {
-                    player.healthBar.unit = total;
-                }
-                else if (total <= 0)
-                {
-                    player.healthBar.unit = 0;
-                }
-
-                player.healthBar.UpdateValue();
+                player.healthBar.UpdateValue(damageAmount);
             }
         }
     }

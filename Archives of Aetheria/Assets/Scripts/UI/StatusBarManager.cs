@@ -27,18 +27,33 @@ public class StatusBarManager : MonoBehaviour
         number.text = unit.ToString() + "/" + maxUnit.ToString();
     }
 
-    public void UpdateValue()
+    public void UpdateValue(float amount)
     {
-        float value = Mathf.Clamp(unit / maxUnit, 0, 1f);
-        slider.value = value;
-        fill.color = gradient.Evaluate(value);
-        number.text = unit.ToString() + "/" + maxUnit.ToString();
+        float total = unit + amount;
+
+        if (total <= maxUnit && total > 0)
+        {
+            unit = total;
+            float value = Mathf.Clamp(unit / maxUnit, 0, 1f);
+            slider.value = value;
+            fill.color = gradient.Evaluate(value);
+            number.text = unit.ToString() + "/" + maxUnit.ToString();
+        }
+        else if (total <= 0)
+        {
+            unit = 0;
+            float value = Mathf.Clamp(unit / maxUnit, 0, 1f);
+            slider.value = value;
+            fill.color = gradient.Evaluate(value);
+            number.text = unit.ToString() + "/" + maxUnit.ToString();
+        }
     }
     private void LateUpdate()
     {
         if (isAbove)
         {
-            transform.LookAt(transform.position + GameObject.Find("Main Camera").transform.forward);
+            // transform.LookAt(transform.position + GameObject.Find("Main Camera").transform.forward);
+            number.text = "Ancient Golem";
         }
     }
 }

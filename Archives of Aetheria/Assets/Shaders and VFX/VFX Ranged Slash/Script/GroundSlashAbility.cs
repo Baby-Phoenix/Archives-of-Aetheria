@@ -8,9 +8,11 @@ public class GroundSlashAbility : MonoBehaviour
     public float slowDownRate = 0.01f;
     public float detectingDistance = 1f;
     public float destroyDelay = 5;
+    public LayerMask detectionLayer;
 
     private Rigidbody rb;
     private bool stopped;
+    private bool isAlreadyHit = false;
 
     private Transform firePoint;
 
@@ -52,6 +54,12 @@ public class GroundSlashAbility : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(!isAlreadyHit)
+            DamageEnemy(-30);
+    }
+
     IEnumerator SlowDown()
     {
         float t = 1;
@@ -63,5 +71,33 @@ public class GroundSlashAbility : MonoBehaviour
         }
 
         stopped = true;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, 4);
+    }
+
+    public void DamageEnemy(float damageAmount)
+    {
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 5, detectionLayer);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            CharacterStats characterStats = colliders[i].transform.GetComponent<CharacterStats>();
+
+            if (characterStats != null)
+            {
+                Vector3 targetDirection = characterStats.transform.position - transform.position;
+                float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
+
+                if (viewableAngle > -360 && viewableAngle < 360)
+                {
+                    isAlreadyHit = true;
+                    EnemyManager2 enemy = colliders[i].gameObject.GetComponent<EnemyManager2>();
+                    enemy.healthbar.UpdateValue(damageAmount);
+                }
+            }
+        }
     }
 }

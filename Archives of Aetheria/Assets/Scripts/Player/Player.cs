@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
         }
 
         if (staminaBar.unit >= 5) 
-        Attack();
+            Attack();
     }
 
     private void Attack()
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
         {
             AttackCombo();
         }
-        if (staminaBar.unit >= 10)
+        if (staminaBar.unit >= 30)
         {
             if (Input.GetMouseButtonDown(1) && !isJumping && !isDodging && !isAttacking)
             {
@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
 
                 animator.SetTrigger("Slash Ability");
             }
-            if (staminaBar.unit >= 15)
+            if (staminaBar.unit >= 99)
             {
                 if (Input.GetMouseButtonDown(2) && !isJumping && !isDodging && !isAttacking)
                 {
@@ -280,7 +280,7 @@ public class Player : MonoBehaviour
             characterController.Move(velocity * Time.deltaTime);
         }
 
-        if (rechargeTime >= 1f)
+        if (rechargeTime >= .5f)
         {
             rechargeTime = 0;
             StaminaManager(1);
@@ -342,13 +342,7 @@ public class Player : MonoBehaviour
 
     private void StaminaManager(float value)
     {
-        float total = staminaBar.unit + value;
-
-        if (total <= staminaBar.maxUnit && total >= 0)
-        {
-            staminaBar.unit = total;
-            staminaBar.UpdateValue();
-        }
+           staminaBar.UpdateValue(value);  
     }
 
     public void ChangeSword()

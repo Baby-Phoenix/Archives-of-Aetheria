@@ -109225,7 +109225,7 @@ AnimationClip:
     functionName: StaminaManager
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: -10
+    floatParameter: -30
     intParameter: 0
     messageOptions: 0
   - time: 0.5
@@ -109235,6 +109235,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.5
+    functionName: DamageEnemy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: -5
+    intParameter: 0
+    messageOptions: 0
   - time: 0.8333333
     functionName: SlashAbilityVFX_2
     data: 
@@ -109242,11 +109249,25 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.8666667
+    functionName: DamageEnemy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: -5
+    intParameter: 0
+    messageOptions: 0
   - time: 1.5666667
     functionName: SlashAbilityVFX_3
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.6666666
+    functionName: DamageEnemy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: -5
     intParameter: 0
     messageOptions: 0
   - time: 2.3666666

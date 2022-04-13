@@ -44633,6 +44633,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.1
+    functionName: DamageEnemy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: -5
+    intParameter: 0
+    messageOptions: 0
   - time: 1.1333333
     functionName: MeleeSlashVFX_1
     data: 

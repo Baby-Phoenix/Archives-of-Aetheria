@@ -26417,6 +26417,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.2
+    functionName: DamageEnemy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: -5
+    intParameter: 0
+    messageOptions: 0
   - time: 0.5
     functionName: ComboReset
     data: 

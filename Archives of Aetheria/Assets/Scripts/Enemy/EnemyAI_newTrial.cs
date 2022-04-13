@@ -122,8 +122,7 @@ public class EnemyAI_newTrial : MonoBehaviour
 
         foreach(Collider player in hitPlayer)
         {
-            player.gameObject.GetComponent<Player>().healthBar.unit--;
-            player.gameObject.GetComponent<Player>().healthBar.UpdateValue();
+            player.gameObject.GetComponent<Player>().healthBar.UpdateValue(-1);
         }
     }
 

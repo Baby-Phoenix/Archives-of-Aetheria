@@ -5,20 +5,16 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour
 {
     public Player player;
-    public LayerMask whatisTutorial;
+    public LayerMask whatisTutorial, whatisBridge;
     public GameObject[] popUps;
     public GameObject[] checkPoints;
     public int popUpindex = 0, previousIndex = 0;
     public bool isPlayerInTutorialGrounds;
+    public bool isPlayerInNextPart;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            player.healthBar.unit--;
-            player.healthBar.UpdateValue();
-        }
 
         for (int i = 0; i < popUps.Length; i++)
         {
@@ -30,10 +26,11 @@ public class TutorialManager : MonoBehaviour
         }
 
         isPlayerInTutorialGrounds = Physics.Raycast(player.transform.position, -transform.up, 2f, whatisTutorial);
+        isPlayerInNextPart = Physics.Raycast(player.transform.position, -transform.up, 2f, whatisBridge);
 
         if (popUpindex == 0)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
                 popUpindex++;
 
             //this else makes sure that players dont see a pop up until they are in tutorial grounds
@@ -46,11 +43,9 @@ public class TutorialManager : MonoBehaviour
 
         else if (popUpindex == 1)
         {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)|| Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
-                popUpindex++;
-
-            else if (!isPlayerInTutorialGrounds)
+            if (!isPlayerInTutorialGrounds && isPlayerInNextPart)
             {
+                popUpindex++;
                 previousIndex = popUpindex;
                 popUpindex = -1;
             }
@@ -58,19 +53,17 @@ public class TutorialManager : MonoBehaviour
 
         else if (popUpindex == 2)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-                popUpindex++;
-
-            else if (!isPlayerInTutorialGrounds)
+            if (!isPlayerInTutorialGrounds && isPlayerInNextPart)
             {
+                popUpindex++;
                 previousIndex = popUpindex;
                 popUpindex = -1;
             }
         }
         else if (popUpindex == 3)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-                popUpindex++;
+            if (Input.GetKeyDown(KeyCode.LeftShift)) ;
+            //popUpindex++;
 
             else if (!isPlayerInTutorialGrounds)
             {
@@ -80,7 +73,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         //if the player is back on tutorial grounds set the popUpindex back
-        else if (popUpindex == -1 &&  isPlayerInTutorialGrounds) 
+        else if (popUpindex == -1 && isPlayerInTutorialGrounds)
         {
             popUpindex = previousIndex;
             previousIndex = 0;

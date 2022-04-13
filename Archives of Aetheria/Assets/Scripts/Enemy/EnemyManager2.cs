@@ -11,6 +11,8 @@ public class EnemyManager2 : MonoBehaviour
     public EnemyAttackAction[] enemyAttacks;
     public EnemyAttackAction currentAttack;
 
+    public StatusBarManager healthbar;
+
     [Header("A.I Settings")]
     public float detectionRadius = 20;
     public float maximumDetectionAngle = 50;
@@ -23,6 +25,13 @@ public class EnemyManager2 : MonoBehaviour
         enemyLocomotionManager2 = GetComponent<EnemyLocomotionManager2>();
         enemyAnimatorManager2 = GetComponent<EnemyAnimatorManager2>();
     }
+
+    private void Start()
+    {
+        healthbar = gameObject.GetComponentInChildren<StatusBarManager>();
+        healthbar.SetMaxValue(100f);
+    }
+
     void Update()
     {
         HandleRecoveryTimer();
