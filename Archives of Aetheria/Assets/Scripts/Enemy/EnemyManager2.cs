@@ -93,8 +93,13 @@ public class EnemyManager2 : MonoBehaviour
             isPerformingAction = true;
             currentRecoveryTime = currentAttack.recoveryTime;
             enemyAnimatorManager2.PlayTargetAnimation(currentAttack.actionAnimation, true);
-            currentAttack = null;
+            
         }
+    }
+
+    private void ResetCurrentAttack()
+    {
+        currentAttack = null;
     }
 
     private void GetNewAttack()

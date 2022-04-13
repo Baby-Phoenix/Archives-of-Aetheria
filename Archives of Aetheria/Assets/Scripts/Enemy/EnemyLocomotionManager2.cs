@@ -7,6 +7,7 @@ public class EnemyLocomotionManager2 : MonoBehaviour
 {
     EnemyManager2 enemyManager2;
     EnemyAnimatorManager2 enemyAnimatorManager2;
+    EnemyLocomotionManager2 enemyLocomotionManager2;
     NavMeshAgent navmeshAgent;
     public Rigidbody enemyRigidBody;
 
@@ -23,6 +24,7 @@ public class EnemyLocomotionManager2 : MonoBehaviour
     {
         enemyManager2 = GetComponent<EnemyManager2>();
         enemyAnimatorManager2 = GetComponent<EnemyAnimatorManager2>();
+        enemyLocomotionManager2 = GetComponent<EnemyLocomotionManager2>();
         navmeshAgent = GetComponent<NavMeshAgent>();
         enemyRigidBody = GetComponent<Rigidbody>();
     }
@@ -116,6 +118,38 @@ public class EnemyLocomotionManager2 : MonoBehaviour
             navmeshAgent.SetDestination(currentTarget.transform.position);
             enemyRigidBody.velocity = targetVelocity;
             transform.rotation = Quaternion.Slerp(transform.rotation, navmeshAgent.transform.rotation, rotationSpeed / Time.deltaTime);
+        }
+    }
+
+    private void DamagePlayer(float damageAmount)
+    {
+        Vector3 targetDirection = currentTarget.transform.position - transform.position;
+        distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
+        float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
+
+        if (enemyLocomotionManager2.distanceFromTarget <= enemyManager2.currentAttack.maximumDistanceNeededToAttack
+                   && enemyLocomotionManager2.distanceFromTarget >= enemyManager2.currentAttack.minimumDistanceNeededToAttack)
+        {
+            if (viewableAngle <= enemyManager2.currentAttack.maximumAttackAngle - 10
+                && viewableAngle >= enemyManager2.currentAttack.minimumAttackAngle - 10)
+            {
+                
+                Player player = currentTarget.gameObject.GetComponent<Player>();
+                float total = player.healthBar.unit + damageAmount;
+
+                if (total <= player.healthBar.maxUnit && total >= 0)
+                {
+                    Debug.Log("IF");
+                    player.healthBar.unit = total;
+                }
+                else if (total <= 0)
+                {
+                    Debug.Log("ELSEEEE IF");
+                    player.healthBar.unit = 0;
+                }
+
+                player.healthBar.UpdateValue();
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Attack03
   m_EditorClassIdentifier: 
   actionAnimation: Punch
-  attackScore: 3
+  attackScore: 2
   recoveryTime: 2
   minimumAttackAngle: -35
   maximumAttackAngle: 35
