@@ -35,16 +35,19 @@ public class PlayerVFX : MonoBehaviour
 
     private void MeleeSlashVFX_1()
     {
+        FindObjectOfType<AudioManager>().Play("Melee Attack");
         meleeVFX_1.SetActive(true);
     }
 
     private void MeleeSlashVFX_2()
     {
+        FindObjectOfType<AudioManager>().Play("Melee Attack");
         meleeVFX_2.SetActive(true);
     }
 
     private void MeleeSlashVFX_3()
     {
+        FindObjectOfType<AudioManager>().Play("Melee Attack");
         meleeVFX_3.SetActive(true);
     }
 

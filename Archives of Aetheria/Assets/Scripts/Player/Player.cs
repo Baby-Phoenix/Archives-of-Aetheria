@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
         if(comboCount == 0)
         {
             isAttacking = true;
-            FindObjectOfType<AudioManager>().Play("Attack");
+            
             animator.SetBool("isCombo1", true);
 
             animator.SetBool("isCombo2", false);
@@ -159,7 +159,6 @@ public class Player : MonoBehaviour
     {
         if (comboCount == 2)
         {
-            FindObjectOfType<AudioManager>().Play("Attack");
             animator.SetBool("isCombo2", true);
 
             animator.SetBool("isCombo1", false);
@@ -170,7 +169,6 @@ public class Player : MonoBehaviour
 
         else if (comboCount == 3)
         {
-            FindObjectOfType<AudioManager>().Play("Attack");
             animator.SetBool("isCombo3", true);
 
             animator.SetBool("isCombo1", false);

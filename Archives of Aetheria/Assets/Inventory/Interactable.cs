@@ -6,9 +6,12 @@ public class Interactable : MonoBehaviour
     public Player p;
     bool isInRange = false;
     private Transform player;
+    private GameObject brokenGolem;
+
     private void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        brokenGolem = GameObject.FindWithTag("Broken Golem");
     }
 
 
@@ -39,6 +42,7 @@ public class Interactable : MonoBehaviour
     {
         p.ChangeSword();
         FindObjectOfType<AudioManager>().Play("ItemGet");
+        brokenGolem.GetComponent<Animator>().SetBool("isWoke", true);
         Destroy(gameObject);
     }
 }

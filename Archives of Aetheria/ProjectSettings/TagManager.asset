@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HealthBar
   - StaminaBar
+  - Broken Golem
   layers:
   - Default
   - TransparentFX

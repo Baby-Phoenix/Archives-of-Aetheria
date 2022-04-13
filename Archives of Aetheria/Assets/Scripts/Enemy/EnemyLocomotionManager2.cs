@@ -139,12 +139,10 @@ public class EnemyLocomotionManager2 : MonoBehaviour
 
                 if (total <= player.healthBar.maxUnit && total >= 0)
                 {
-                    Debug.Log("IF");
                     player.healthBar.unit = total;
                 }
                 else if (total <= 0)
                 {
-                    Debug.Log("ELSEEEE IF");
                     player.healthBar.unit = 0;
                 }
 
