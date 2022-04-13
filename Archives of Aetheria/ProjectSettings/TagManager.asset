@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HealthBar
   - StaminaBar
+  - Broken Golem
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - TutorialGround
   - Walls
   - Enemy
-  - Player
-  - 
-  - 
+  - Character
+  - CharacterCollisionBlocker
+  - Controller
   - 
   - 
   - 
