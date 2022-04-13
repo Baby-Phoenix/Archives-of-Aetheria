@@ -41,12 +41,12 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<AudioManager>().Play("BGM");
+       // FindObjectOfType<AudioManager>().Play("BGM");
         Sword2.SetActive(false);
 
         rechargeTime = 0;
         StatusBarManager[] status = GameObject.Find("Player HUD").GetComponentsInChildren<StatusBarManager>();
-        
+        Debug.Log(status.Length);
         foreach(var i in status)
         {
             if (i.gameObject.tag == "HealthBar")
