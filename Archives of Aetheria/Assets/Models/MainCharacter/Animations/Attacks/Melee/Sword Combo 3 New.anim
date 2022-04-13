@@ -26403,6 +26403,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0
+    functionName: StaminaManager
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: -5
+    intParameter: 0
+    messageOptions: 0
   - time: 0.2
     functionName: MeleeSlashVFX_3
     data: 

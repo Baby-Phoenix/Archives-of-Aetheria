@@ -6,7 +6,7 @@ public class GroundSlashAbility : MonoBehaviour
 {
     public float speed = 30;
     public float slowDownRate = 0.01f;
-    public float detectingDistance = 0.1f;
+    public float detectingDistance = 1f;
     public float destroyDelay = 5;
 
     private Rigidbody rb;
