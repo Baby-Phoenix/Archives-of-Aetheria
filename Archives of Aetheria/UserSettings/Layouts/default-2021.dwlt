@@ -16,10 +16,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 43
-    width: 2560
-    height: 1357
+    width: 1920
+    height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 7}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -69,8 +69,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 2560
-    height: 1307
+    width: 1920
+    height: 947
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
@@ -176,8 +176,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2560
-    height: 1357
+    width: 1920
+    height: 997
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -201,7 +201,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2560
+    width: 1920
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -222,8 +222,8 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 1337
-    width: 2560
+    y: 977
+    width: 1920
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -2999,10 +2999,10 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 5af7deae88a5d3b4d889da67d0112d16,
+  m_AnimatorController: {fileID: 9100000, guid: d302d6626d3f0154baf587ec199388cf,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 8423013974325320965, guid: 5af7deae88a5d3b4d889da67d0112d16,
+  - m_Target: {fileID: -8816053357201008017, guid: d302d6626d3f0154baf587ec199388cf,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -3066,8 +3066,8 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Models/Golem
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: C:\Users\prana\Documents\repos\Archives-of-Aetheria\Archives
-    of Aetheria
+  m_LastProjectPath: "C:\\Users\\happy\\OneDrive\\\u684C\u9762\\Archives-of-Aetheria\\Archives-of-Aetheria\\Archives
+    of Aetheria"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:

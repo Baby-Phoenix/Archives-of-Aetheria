@@ -31,11 +31,11 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (!s.source.isPlaying)
+        if (s.name == "BGM"&& !s.source.isPlaying)
         {
             s.source.Play();
         }
-        else if (s.name == "GUN")
+        else if (s.name != "BGM")
         {
             s.source.Play();
         }

@@ -1,27 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
-public class Player : MonoBehaviour
+public class PlayerMove_v2 : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float jumpHeight;
     [SerializeField] private float gravityMultiplier;
     [SerializeField] private float jumpHorizontalSpeed;
     [SerializeField] private float jumpTime;
-    [SerializeField] private float rechargeTime;
     [SerializeField] private Transform camTransform;
-    public StatusBarManager healthBar;
-    public StatusBarManager staminaBar;
-    public GameObject Sword1;
-    public GameObject Sword2;
-
+    [SerializeField] private GameObject inventoryUI;
+    [SerializeField] private GameObject cinemachineCam;
     [SerializeField] AnimationCurve dodgeCurve;
     [SerializeField] private float dodgeSpeed = 1;
     private bool isDodging;
     private float dodgeTimer;
-    [SerializeField] private float dodgeRate = 1;
-    private float nextDodge;
+    public bool OpenningInventory=false;
 
     private Animator animator;
     private CharacterController characterController;
@@ -38,31 +34,10 @@ public class Player : MonoBehaviour
 
     int comboCount;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<AudioManager>().Play("BGM");
-        Sword2.SetActive(false);
-
-        rechargeTime = 0;
-        StatusBarManager[] status = GameObject.Find("Player HUD").GetComponentsInChildren<StatusBarManager>();
-        
-        foreach(var i in status)
-        {
-            if (i.gameObject.tag == "HealthBar")
-            {
-                healthBar = i;
-                healthBar.SetMaxValue(10f);
-            }
-
-            else if (i.gameObject.tag == "StaminaBar")
-            {
-                staminaBar = i;
-                staminaBar.SetMaxValue(100f);
-            }
-        }
-      
-       
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
@@ -74,52 +49,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isDodging && !isAttacking) PlayerMovement();
+        if(!isDodging && !isAttacking) PlayerMovement();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isAttacking && Time.time > nextDodge)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isAttacking)
         {
             if (moveDir.magnitude != 0 && !isJumping)
             {
-                nextDodge = Time.time + dodgeRate;
-
                 StartCoroutine(Dodge());
             }
-            rechargeTime = 0;
         }
-
-        if (staminaBar.unit >= 5) 
-        Attack();
-    }
-
-    private void Attack()
-    {
-        if (Input.GetMouseButtonDown(0) && !isJumping && !isDodging)
+        if (Input.GetMouseButtonDown(0) && !isJumping && !isDodging&& !inventoryUI.activeSelf)
         {
             AttackCombo();
         }
-        if (staminaBar.unit >= 10)
-        {
-            if (Input.GetMouseButtonDown(1) && !isJumping && !isDodging && !isAttacking)
-            {
-                isAttacking = true;
-
-                animator.SetTrigger("Slash Ability");
-            }
-            if (staminaBar.unit >= 15)
-            {
-                if (Input.GetMouseButtonDown(2) && !isJumping && !isDodging && !isAttacking)
-                {
-                    isAttacking = true;
-
-                    animator.SetTrigger("Special Ability");
-                }
-            }
-        }
-    }
-    
-    private void AttackDone()
-    {
-        isAttacking = false;
     }
 
     void AttackCombo()
@@ -127,7 +69,7 @@ public class Player : MonoBehaviour
         if(comboCount == 0)
         {
             isAttacking = true;
-            FindObjectOfType<AudioManager>().Play("Attack");
+
             animator.SetBool("isCombo1", true);
 
             animator.SetBool("isCombo2", false);
@@ -159,7 +101,6 @@ public class Player : MonoBehaviour
     {
         if (comboCount == 2)
         {
-            FindObjectOfType<AudioManager>().Play("Attack");
             animator.SetBool("isCombo2", true);
 
             animator.SetBool("isCombo1", false);
@@ -170,7 +111,6 @@ public class Player : MonoBehaviour
 
         else if (comboCount == 3)
         {
-            FindObjectOfType<AudioManager>().Play("Attack");
             animator.SetBool("isCombo3", true);
 
             animator.SetBool("isCombo1", false);
@@ -196,10 +136,13 @@ public class Player : MonoBehaviour
     
     private void PlayerMovement()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        rechargeTime += Time.deltaTime;
-
+        float horizontalInput=0;
+        float verticalInput=0;
+        if (!inventoryUI.activeSelf)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+        }
         moveDir = new Vector3(horizontalInput, 0, verticalInput);
         float inputMagnitude = Mathf.Clamp01(moveDir.magnitude);
 
@@ -209,7 +152,6 @@ public class Player : MonoBehaviour
         }
 
         animator.SetFloat("Input Magnitude", inputMagnitude, 0.08f, Time.deltaTime);
-
         moveDir = Quaternion.AngleAxis(camTransform.rotation.eulerAngles.y, Vector3.up) * moveDir;
         moveDir.Normalize();
 
@@ -254,7 +196,7 @@ public class Player : MonoBehaviour
             animator.SetBool("isGrounded", false);
             isGrounded = false;
 
-            if ((isJumping && ySpeed < 0) || ySpeed < -10.5)
+            if ((isJumping && ySpeed < 0) || ySpeed < -3.5)
             {
                 animator.SetBool("isFalling", true);
                 characterController.height = 2.9f;
@@ -281,13 +223,17 @@ public class Player : MonoBehaviour
 
             characterController.Move(velocity * Time.deltaTime);
         }
-
-        if (rechargeTime >= 1f)
+        bool FreeLookOn = cinemachineCam.GetComponent<CinemachineFreeLook>().enabled;
+        if (Input.GetKeyDown(KeyCode.G)&& Cursor.lockState == CursorLockMode.Locked)
         {
-            rechargeTime = 0;
-            StaminaManager(1);
+            OnApplicationFocus(false);
+            cinemachineCam.GetComponent<CinemachineFreeLook>().enabled = !FreeLookOn;
         }
-       
+        else if (Input.GetKeyDown(KeyCode.G)&& Cursor.lockState == CursorLockMode.None)
+        {
+            OnApplicationFocus(true);
+            cinemachineCam.GetComponent<CinemachineFreeLook>().enabled = !FreeLookOn;
+        }
     }
 
     IEnumerator Dodge()
@@ -303,7 +249,6 @@ public class Player : MonoBehaviour
             characterController.Move(dir * dodgeSpeed * Time.deltaTime);
             timer += Time.deltaTime;
             yield return null;
-            
         }
         isDodging = false;
     }
@@ -319,7 +264,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    //Lock cursor from moving
     private void OnApplicationFocus(bool focus)
     {
         if (focus)
@@ -331,7 +275,6 @@ public class Player : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
     }
-
     private void SetCharacterControllerHeight(float height)
     {
         characterController.height = height;
@@ -340,22 +283,5 @@ public class Player : MonoBehaviour
     private void SetCharacterControllerPosY(float yPos)
     {
         characterController.center = new Vector3(characterController.center.x, yPos, characterController.center.z);
-    }
-
-    private void StaminaManager(float value)
-    {
-        float total = staminaBar.unit + value;
-
-        if (total <= staminaBar.maxUnit && total >= 0)
-        {
-            staminaBar.unit = total;
-            staminaBar.UpdateValue();
-        }
-    }
-
-    public void ChangeSword()
-    {
-        Sword2.SetActive(true);
-        Sword1.SetActive(false);
     }
 }
