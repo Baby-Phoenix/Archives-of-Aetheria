@@ -5,12 +5,13 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour
 {
     public Player player;
-    public LayerMask whatisTutorial, whatisBridge;
+    public LayerMask whatisTutorial, whatisBridge, whatisDeath, whatisTemple;
     public GameObject[] popUps;
+    public GameObject[] respawnAnchors;
     public GameObject[] checkPoints;
     public int popUpindex = 0, previousIndex = 0;
     public bool isPlayerInTutorialGrounds;
-    public bool isPlayerInNextPart;
+    public bool isPlayerInNextPart, isPlayerDead;
 
     // Update is called once per frame
     void Update()
@@ -27,6 +28,14 @@ public class TutorialManager : MonoBehaviour
 
         isPlayerInTutorialGrounds = Physics.Raycast(player.transform.position, -transform.up, 2f, whatisTutorial);
         isPlayerInNextPart = Physics.Raycast(player.transform.position, -transform.up, 2f, whatisBridge);
+        isPlayerDead = Physics.Raycast(player.transform.position, -transform.up, 2f, whatisDeath);
+
+        if (isPlayerDead)
+        {
+            //do vignette
+            player.transform.position = respawnAnchors[previousIndex].transform.position;
+            player.healthBar.SetMaxValue(10f);
+        }
 
         if (popUpindex == 0)
         {
@@ -53,7 +62,8 @@ public class TutorialManager : MonoBehaviour
 
         else if (popUpindex == 2)
         {
-            if (!isPlayerInTutorialGrounds && isPlayerInNextPart)
+
+            if (!isPlayerInTutorialGrounds && isPlayerInNextPart) 
             {
                 popUpindex++;
                 previousIndex = popUpindex;
@@ -62,14 +72,39 @@ public class TutorialManager : MonoBehaviour
         }
         else if (popUpindex == 3)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift)) ;
-            //popUpindex++;
+            if (!isPlayerInNextPart)
+            {
+                popUpindex++;
+                previousIndex = popUpindex;
+                popUpindex = -1;
+            }
+            
+        }
 
-            else if (!isPlayerInTutorialGrounds)
+        else if (popUpindex == 4)
+        {
+            if (!isPlayerInTutorialGrounds)
             {
                 previousIndex = popUpindex;
                 popUpindex = -1;
             }
+        }
+
+        else if (popUpindex == 5)
+        {
+
+            bool isTemple = Physics.Raycast(player.transform.position, -transform.up, 2f, whatisTemple);
+            if (!isPlayerInTutorialGrounds && isTemple)
+            {
+                previousIndex = popUpindex;
+                popUpindex = -1;
+            }
+        }
+
+        else if (popUpindex == 6)
+        {
+            //if player wins
+            popUpindex++;
         }
 
         //if the player is back on tutorial grounds set the popUpindex back

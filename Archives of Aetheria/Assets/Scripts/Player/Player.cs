@@ -74,6 +74,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (healthBar.unit <= 0)
+        {
+            GameObject.Find("Tutorial Manager").GetComponent<TutorialManager>().isPlayerDead = true;
+        }
         if (!isDodging && !isAttacking) PlayerMovement();
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isAttacking && Time.time > nextDodge)

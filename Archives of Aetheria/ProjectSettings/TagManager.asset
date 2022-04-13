@@ -21,9 +21,9 @@ TagManager:
   - Character
   - CharacterCollisionBlocker
   - Controller
-  - 
-  - 
-  - 
+  - Bridge
+  - Death
+  - Temple
   - 
   - 
   - 
