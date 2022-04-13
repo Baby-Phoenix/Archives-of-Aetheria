@@ -75,14 +75,14 @@ Material:
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
-    - _Base_Scale: 0.01
-    - _Base_Speed: 29.8
-    - _Base_Strength: 1.89
+    - _Base_Scale: 0.03
+    - _Base_Speed: 8.19
+    - _Base_Strength: 0.36
     - _BlendMode: 0
     - _ConservativeDepthOffsetEnable: 0
     - _CullMode: 2
     - _CullModeForward: 2
-    - _Curvature_Radius: 1523
+    - _Curvature_Radius: 1488
     - _DepthOffsetEnable: 0
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
@@ -92,7 +92,7 @@ Material:
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1
     - _Noise_Edge_1: -1
-    - _Noise_Ege_2: 2
+    - _Noise_Ege_2: -8.2
     - _Noise_Height: 60.54
     - _Noise_Power: -57.3
     - _Noise_Scale: 0.02
