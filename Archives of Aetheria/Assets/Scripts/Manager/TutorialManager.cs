@@ -8,7 +8,6 @@ public class TutorialManager : MonoBehaviour
     public LayerMask whatisTutorial, whatisBridge, whatisDeath, whatisTemple;
     public GameObject[] popUps;
     public GameObject[] respawnAnchors;
-    public GameObject[] checkPoints;
     public int popUpindex = 0, previousIndex = 0;
     public bool isPlayerInTutorialGrounds;
     public bool isPlayerInNextPart, isPlayerDead;
@@ -33,7 +32,7 @@ public class TutorialManager : MonoBehaviour
         if (isPlayerDead)
         {
             //do vignette
-            player.transform.position = respawnAnchors[previousIndex].transform.position;
+            player.gameObject.transform.position = respawnAnchors[previousIndex].transform.position;
             player.healthBar.SetMaxValue(10f);
         }
 

@@ -63,7 +63,7 @@ public class StartControls : MonoBehaviour
 
     private void OnExitClick()
     {
-        // Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+         Application.Quit();
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 }
