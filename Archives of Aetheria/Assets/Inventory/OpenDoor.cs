@@ -7,11 +7,11 @@ public class OpenDoor : MonoBehaviour
     bool isInRange = false;
     private Transform player;
     private GameObject gate;
+    public Animator gateAnimator;
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-        gate = GameObject.FindWithTag("Gate");
     }
 
 
@@ -40,6 +40,6 @@ public class OpenDoor : MonoBehaviour
     }
     public virtual void Interact()
     {
-        gate.GetComponent<Animator>().SetBool("openGate", true);
+        gateAnimator.SetTrigger("openGate");
     }
 }

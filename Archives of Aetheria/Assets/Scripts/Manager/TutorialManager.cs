@@ -62,7 +62,7 @@ public class TutorialManager : MonoBehaviour
         else if (popUpindex == 2)
         {
 
-            if (!isPlayerInTutorialGrounds && isPlayerInNextPart) 
+            if (!isPlayerInTutorialGrounds && isPlayerInNextPart)
             {
                 popUpindex++;
                 previousIndex = popUpindex;
@@ -77,13 +77,14 @@ public class TutorialManager : MonoBehaviour
                 previousIndex = popUpindex;
                 popUpindex = -1;
             }
-            
+
         }
 
         else if (popUpindex == 4)
         {
-            if (!isPlayerInTutorialGrounds)
+            if (!isPlayerInTutorialGrounds && !isPlayerInNextPart)
             {
+                popUpindex++;
                 previousIndex = popUpindex;
                 popUpindex = -1;
             }
@@ -93,8 +94,9 @@ public class TutorialManager : MonoBehaviour
         {
 
             bool isTemple = Physics.Raycast(player.transform.position, -transform.up, 2f, whatisTemple);
-            if (!isPlayerInTutorialGrounds && isTemple)
+            if (isTemple)
             {
+                popUpindex++;
                 previousIndex = popUpindex;
                 popUpindex = -1;
             }
@@ -103,7 +105,7 @@ public class TutorialManager : MonoBehaviour
         else if (popUpindex == 6)
         {
             //if player wins
-            popUpindex++;
+            //   popUpindex++;
         }
 
         //if the player is back on tutorial grounds set the popUpindex back
@@ -115,3 +117,4 @@ public class TutorialManager : MonoBehaviour
 
     }
 }
+ 
