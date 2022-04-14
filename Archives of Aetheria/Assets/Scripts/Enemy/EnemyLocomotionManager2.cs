@@ -135,6 +135,7 @@ public class EnemyLocomotionManager2 : MonoBehaviour
                 if (viewableAngle <= 360
                 && viewableAngle >= -360)
                 {
+                    FindObjectOfType<AudioManager>().Play("hurt1");
                     Player player = currentTarget.gameObject.GetComponent<Player>();
                     player.healthBar.UpdateValue(damageAmount);
                 }
@@ -142,10 +143,12 @@ public class EnemyLocomotionManager2 : MonoBehaviour
             else if (viewableAngle <= enemyManager2.currentAttack.maximumAttackAngle - 10
                 && viewableAngle >= enemyManager2.currentAttack.minimumAttackAngle - 10)
             {
+                FindObjectOfType<AudioManager>().Play("hurt1");
                 Player player = currentTarget.gameObject.GetComponent<Player>();
                 player.healthBar.UpdateValue(damageAmount);
             }
             
         }
     }
+
 }

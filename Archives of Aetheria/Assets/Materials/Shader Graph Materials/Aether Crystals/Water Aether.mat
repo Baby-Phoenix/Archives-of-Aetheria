@@ -18,7 +18,7 @@ MonoBehaviour:
     m_Values: 
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -26,7 +26,9 @@ Material:
   m_Name: Water Aether
   m_Shader: {fileID: -6465566751694194690, guid: 21facbc865a87e54ebf908c0ae1a9e67,
     type: 3}
-  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -63,7 +65,7 @@ Material:
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _BlendMode: 0
-    - _BottomLine: 0.107
+    - _BottomLine: 0.511
     - _ConservativeDepthOffsetEnable: 0
     - _CullMode: 2
     - _CullModeForward: 2
@@ -98,7 +100,7 @@ Material:
     - _StencilWriteMaskMV: 40
     - _SupportDecals: 1
     - _SurfaceType: 0
-    - _TopLine: 0.923
+    - _TopLine: 0.621
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
@@ -112,11 +114,11 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.0556029, g: 0, b: 6.220074, a: 1}
-    - _BottomColor: {r: 462246.25, g: 2898334, b: 13999450, a: 1}
+    - _BaseColor: {r: 0.35686275, g: 0, b: 0.12609291, a: 1}
+    - _BottomColor: {r: 1.639211, g: 9.36692, b: 44.727043, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TopColor: {r: 4112.063, g: 33924.52, b: 196351, a: 1}
+    - _TopColor: {r: 0.15449657, g: 1.2745967, b: 7.3772106, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1927128654945203059
 MonoBehaviour:

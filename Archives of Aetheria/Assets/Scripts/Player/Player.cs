@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+
         FindObjectOfType<AudioManager>().Play("BGM");
         Sword2.SetActive(false);
 
@@ -74,10 +76,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (healthBar.unit <= 0)
-        {
-            GameObject.Find("Tutorial Manager").GetComponent<TutorialManager>().isPlayerDead = true;
-        }
+        
         if (!isDodging && !isAttacking) PlayerMovement();
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isAttacking && Time.time > nextDodge)
@@ -93,6 +92,19 @@ public class Player : MonoBehaviour
 
         if (staminaBar.unit >= 5) 
             Attack();
+    }
+
+    private void LateUpdate()
+    {
+        if (healthBar.unit <= 0)
+        {
+            FindObjectOfType<AudioManager>().Play("Death");
+            GameObject.FindGameObjectWithTag("Tutorial Manager").GetComponent<TutorialManager>().isPlayerDead = true;
+
+            transform.position.Set(GameObject.FindGameObjectWithTag("Tutorial Manager").GetComponent<TutorialManager>().currentRespawnAnchors.transform.position.x,
+                GameObject.FindGameObjectWithTag("Tutorial Manager").GetComponent<TutorialManager>().currentRespawnAnchors.transform.position.y,
+                GameObject.FindGameObjectWithTag("Tutorial Manager").GetComponent<TutorialManager>().currentRespawnAnchors.transform.position.z);
+        }
     }
 
     private void Attack()

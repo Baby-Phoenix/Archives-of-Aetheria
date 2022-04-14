@@ -8,6 +8,7 @@ public class TutorialManager : MonoBehaviour
     public LayerMask whatisTutorial, whatisBridge, whatisDeath, whatisTemple;
     public GameObject[] popUps;
     public GameObject[] respawnAnchors;
+    public GameObject currentRespawnAnchors;
     public int popUpindex = 0, previousIndex = 0;
     public bool isPlayerInTutorialGrounds;
     public bool isPlayerInNextPart, isPlayerDead;
@@ -36,6 +37,7 @@ public class TutorialManager : MonoBehaviour
             player.healthBar.SetMaxValue(10f);
         }
 
+
         if (popUpindex == 0)
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
@@ -45,6 +47,7 @@ public class TutorialManager : MonoBehaviour
             else if (!isPlayerInTutorialGrounds)
             {
                 previousIndex = popUpindex;
+                currentRespawnAnchors = respawnAnchors[previousIndex];
                 popUpindex = -1;
             }
         }
@@ -55,6 +58,7 @@ public class TutorialManager : MonoBehaviour
             {
                 popUpindex++;
                 previousIndex = popUpindex;
+                currentRespawnAnchors = respawnAnchors[previousIndex];
                 popUpindex = -1;
             }
         }
@@ -66,6 +70,7 @@ public class TutorialManager : MonoBehaviour
             {
                 popUpindex++;
                 previousIndex = popUpindex;
+                currentRespawnAnchors = respawnAnchors[previousIndex];
                 popUpindex = -1;
             }
         }
@@ -75,6 +80,7 @@ public class TutorialManager : MonoBehaviour
             {
                 popUpindex++;
                 previousIndex = popUpindex;
+                currentRespawnAnchors = respawnAnchors[previousIndex];
                 popUpindex = -1;
             }
 
@@ -86,6 +92,7 @@ public class TutorialManager : MonoBehaviour
             {
                 popUpindex++;
                 previousIndex = popUpindex;
+                currentRespawnAnchors = respawnAnchors[previousIndex];
                 popUpindex = -1;
             }
         }
@@ -98,6 +105,7 @@ public class TutorialManager : MonoBehaviour
             {
                 popUpindex++;
                 previousIndex = popUpindex;
+                currentRespawnAnchors = respawnAnchors[previousIndex];
                 popUpindex = -1;
             }
         }
@@ -112,6 +120,7 @@ public class TutorialManager : MonoBehaviour
         else if (popUpindex == -1 && isPlayerInTutorialGrounds)
         {
             popUpindex = previousIndex;
+            currentRespawnAnchors = respawnAnchors[previousIndex];
             previousIndex = 0;
         }
 

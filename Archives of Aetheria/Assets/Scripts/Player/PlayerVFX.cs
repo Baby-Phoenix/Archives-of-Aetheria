@@ -49,38 +49,48 @@ public class PlayerVFX : MonoBehaviour
     private void MeleeSlashVFX_1()
     {
         FindObjectOfType<AudioManager>().Play("Melee Attack");
+        FindObjectOfType<AudioManager>().Play("melee1");
         meleeVFX_1.SetActive(true);
     }
 
     private void MeleeSlashVFX_2()
     {
         FindObjectOfType<AudioManager>().Play("Melee Attack");
+        FindObjectOfType<AudioManager>().Play("melee2");
         meleeVFX_2.SetActive(true);
     }
 
     private void MeleeSlashVFX_3()
     {
         FindObjectOfType<AudioManager>().Play("Melee Attack");
+        FindObjectOfType<AudioManager>().Play("melee3");
         meleeVFX_3.SetActive(true);
     }
 
     private void SlashAbilityVFX_1()
     {
+        FindObjectOfType<AudioManager>().Play("Melee Attack");
+        FindObjectOfType<AudioManager>().Play("heavy1");
         slashVFX_1.SetActive(true);
     }
 
     private void SlashAbilityVFX_2()
     {
+        FindObjectOfType<AudioManager>().Play("Melee Attack");
+        FindObjectOfType<AudioManager>().Play("heavy2");
         slashVFX_2.SetActive(true);
     }
 
     private void SlashAbilityVFX_3()
     {
+        FindObjectOfType<AudioManager>().Play("Melee Attack");
+        FindObjectOfType<AudioManager>().Play("heavy3");
         slashVFX_3.SetActive(true);
     }
 
     private void SpecialAbilityVFX()
     {
+        
         ShootProjectile();
     }
 
@@ -88,6 +98,8 @@ public class PlayerVFX : MonoBehaviour
     {
         if (cam != null)
         {
+            FindObjectOfType<AudioManager>().Play("SpecialVFX");
+            FindObjectOfType<AudioManager>().Play("Special");
             InstantiateProjectile();
         }
     }

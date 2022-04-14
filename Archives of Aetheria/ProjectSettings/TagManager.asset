@@ -9,6 +9,7 @@ TagManager:
   - Broken Golem
   - Gate
   - EndDoor
+  - Tutorial Manager
   layers:
   - Default
   - TransparentFX

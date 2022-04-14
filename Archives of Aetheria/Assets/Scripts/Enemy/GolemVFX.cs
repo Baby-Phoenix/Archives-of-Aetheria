@@ -20,4 +20,14 @@ public class GolemVFX : MonoBehaviour
     {
         Destroy(projectileObj, 5);
     }
+
+    private void GolemSwing()
+    {
+        FindObjectOfType<AudioManager>().Play("GolemSwing");
+    }
+
+    private void GolemSlam()
+    {
+        FindObjectOfType<AudioManager>().Play("GolemSlam");
+    }
 }

@@ -114,11 +114,11 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 27.654886, g: 11.829252, b: 0.28958052, a: 1}
-    - _BottomColor: {r: 0, g: 33.89676, b: 34.606636, a: 1}
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BottomColor: {r: 9.317915, g: 2.3613892, b: 0, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TopColor: {r: 18.811813, g: 5.945243, b: 0.2662049, a: 1}
+    - _TopColor: {r: 766.9961, g: 94.93131, b: 16.06273, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3814260052138422536
 MonoBehaviour:
