@@ -20,6 +20,8 @@ public class EnemyManager2 : MonoBehaviour
 
     public float currentRecoveryTime = 0;
 
+    private bool isDeadAnimPlayed = false;
+
     private void Awake()
     {
         enemyLocomotionManager2 = GetComponent<EnemyLocomotionManager2>();
@@ -35,11 +37,23 @@ public class EnemyManager2 : MonoBehaviour
     void Update()
     {
         HandleRecoveryTimer();
+        if (healthbar.unit <= 0)
+        {
+            if (!isDeadAnimPlayed)
+            {
+                enemyAnimatorManager2.PlayAnimation("Death Copy");
+                GameObject.FindGameObjectWithTag("EndDoor").SetActive(false);
+                isDeadAnimPlayed = true;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        HandleCurrentAction();
+        if (!isDeadAnimPlayed)
+        {
+            HandleCurrentAction();
+        }
     }
 
     private void HandleCurrentAction()
@@ -92,7 +106,8 @@ public class EnemyManager2 : MonoBehaviour
     {
         if (isPerformingAction)
             return;
-
+        
+        
         if (currentAttack == null)
         {
             GetNewAttack();

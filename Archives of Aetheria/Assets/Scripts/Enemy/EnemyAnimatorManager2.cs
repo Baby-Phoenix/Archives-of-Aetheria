@@ -19,4 +19,14 @@ public class EnemyAnimatorManager2 : AnimatorManager
         Vector3 velocity = deltaPosition / delta;
         enemyLocomotionManager2.enemyRigidBody.velocity = velocity;
     }
+    
+    private void SetAttackToDone()
+    {
+        this.anim.SetBool("attackDone", true);
+    }
+
+    private void SetAttackToNotDone()
+    {
+        this.anim.SetBool("attackDone", false);
+    }
 }

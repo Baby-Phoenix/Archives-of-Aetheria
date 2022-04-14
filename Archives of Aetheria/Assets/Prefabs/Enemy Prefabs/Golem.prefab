@@ -6403,7 +6403,6 @@ MonoBehaviour:
   enemyAttacks:
   - {fileID: 11400000, guid: b81256f57f8a81a4087f168a686ad713, type: 2}
   - {fileID: 11400000, guid: 4992c851e0643fc4e89a4300a50c9a27, type: 2}
-  - {fileID: 11400000, guid: a8922ed67b754bc49ae3d37971c7f70f, type: 2}
   currentAttack: {fileID: 0}
   healthbar: {fileID: 0}
   detectionRadius: 100

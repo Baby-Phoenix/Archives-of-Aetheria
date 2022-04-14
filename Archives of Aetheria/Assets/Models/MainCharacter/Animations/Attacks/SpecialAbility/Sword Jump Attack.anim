@@ -74935,7 +74935,7 @@ AnimationClip:
     functionName: StaminaManager
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: -99
+    floatParameter: -30
     intParameter: 0
     messageOptions: 0
   - time: 0.8333333

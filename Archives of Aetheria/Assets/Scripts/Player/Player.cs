@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // FindObjectOfType<AudioManager>().Play("BGM");
+        FindObjectOfType<AudioManager>().Play("BGM");
         Sword2.SetActive(false);
 
         rechargeTime = 0;
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
         {
             AttackCombo();
         }
-        if (staminaBar.unit >= 30)
+        if (staminaBar.unit >= 10)
         {
             if (Input.GetMouseButtonDown(1) && !isJumping && !isDodging && !isAttacking)
             {
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
 
                 animator.SetTrigger("Slash Ability");
             }
-            if (staminaBar.unit >= 99)
+            if (staminaBar.unit >= 30)
             {
                 if (Input.GetMouseButtonDown(2) && !isJumping && !isDodging && !isAttacking)
                 {
