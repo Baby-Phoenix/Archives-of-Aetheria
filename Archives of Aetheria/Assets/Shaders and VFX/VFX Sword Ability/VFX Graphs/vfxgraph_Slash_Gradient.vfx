@@ -790,7 +790,7 @@ MonoBehaviour:
     enumValues: []
     descendantCount: 0
   m_ImportDependencies: []
-  m_GraphVersion: 8
+  m_GraphVersion: 9
   m_ResourceVersion: 1
   m_SubgraphDependencies: []
   m_CategoryPath: 
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
-  boundsSettingMode: 1
+  boundsMode: 1
   m_Space: 0
 --- !u!114 &8926484042661614580
 MonoBehaviour:
@@ -1486,10 +1486,10 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661614660}
-  - {fileID: 8926484042661615329}
   - {fileID: 8926484042661615330}
-  - {fileID: 8926484042661615332}
+  - {fileID: 8926484042661615329}
   - {fileID: 8926484042661615335}
+  - {fileID: 8926484042661615332}
   - {fileID: 8926484042661614602}
   - {fileID: 8926484042661614603}
   m_OutputSlots: []
@@ -3965,10 +3965,10 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661614710}
-  - {fileID: 8926484042661614760}
   - {fileID: 8926484042661614761}
-  - {fileID: 8926484042661614842}
+  - {fileID: 8926484042661614760}
   - {fileID: 8926484042661615305}
+  - {fileID: 8926484042661614842}
   - {fileID: 8926484042661614717}
   - {fileID: 8926484042661614718}
   m_OutputSlots: []
@@ -4931,7 +4931,7 @@ MonoBehaviour:
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
-  boundsSettingMode: 1
+  boundsMode: 1
   m_Space: 0
 --- !u!114 &8926484042661614777
 MonoBehaviour:
@@ -7207,7 +7207,7 @@ MonoBehaviour:
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
-  boundsSettingMode: 1
+  boundsMode: 1
   m_Space: 0
 --- !u!114 &8926484042661614875
 MonoBehaviour:
@@ -11343,7 +11343,7 @@ MonoBehaviour:
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
-  boundsSettingMode: 1
+  boundsMode: 1
   m_Space: 0
 --- !u!114 &8926484042661615018
 MonoBehaviour:
@@ -15820,7 +15820,7 @@ MonoBehaviour:
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
-  boundsSettingMode: 1
+  boundsMode: 1
   m_Space: 0
 --- !u!114 &8926484042661615189
 MonoBehaviour:
